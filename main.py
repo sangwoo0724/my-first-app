@@ -88,7 +88,7 @@ st.pyplot(fig)
 
 # 푸터
 st.markdown("---")
-st.markdown("**이 웹사이트는 Streamlit으로 만들어졌습니다.
+
 
 
 
