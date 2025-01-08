@@ -52,11 +52,6 @@ elif menu_option == "그래프 시각화":
     ax.set_ylabel("Y-axis")
     st.pyplot(fig)
 
-# 푸터
-st.markdown("---")
-st.markdown("**💡 참고:** 이 앱은 Streamlit으로 개발되었습니다.")
-st.markdown("[Streamlit 문서 보기](https://docs.streamlit.io/)")
-
 
 
 
