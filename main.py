@@ -15,7 +15,7 @@ st.markdown("**Streamlit으로 간단하면서도 멋진 웹앱을 만들어봅�
 
 # 이미지 추가
 st.image(
-    "https://source.unsplash.com/800x400/?nature,technology",
+    "https://kr.pinterest.com/pin/on-instagram--833658581040599317/",
     caption="아름다운 자연과 기술의 조화",
     use_column_width=True
 )
