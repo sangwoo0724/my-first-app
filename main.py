@@ -21,9 +21,7 @@ if menu_option == "홈":
     st.subheader("🏠 홈 화면")
     st.image("https://source.unsplash.com/800x400/?nature,technology", caption="Streamlit과 함께하는 멋진 앱", use_column_width=True)
     st.write("""
-    이 앱은 Streamlit으로 만들어졌습니다.  
-    아래 사이드바를 통해 데이터를 생성하거나 그래프를 시각화해보세요!
-    """)
+   
 
 # 데이터 생성 섹션
 elif menu_option == "데이터 생성":
