@@ -3,54 +3,59 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# 앱 제목
+# 메인 제목
 st.title("🌟 나의 첫번째 앱 🌟")
+st.markdown("**Streamlit을 활용해 나만의 웹앱을 만들어보세요!** 🚀")
 
-# 서브 타이틀
-st.subheader("Streamlit을 활용한 간단하고 신기한 웹앱")
-
-# 사용자 입력
-st.write("**당신의 이름을 입력해 주세요!** 😊")
-name = st.text_input("이름", placeholder="여기에 이름을 입력하세요")
+# 사용자 이름 입력
+name = st.text_input("당신의 이름을 입력해주세요:", placeholder="예: 홍길동")
 if name:
-    st.write(f"환영합니다, **{name}** 님! 🎉")
+    st.write(f"안녕하세요, **{name}** 님! 앱에 오신 것을 환영합니다! 🎉")
 
-# 사이드바
-st.sidebar.title("📌 사이드바 메뉴")
-st.sidebar.markdown("**여기에서 옵션을 선택할 수 있습니다!**")
-sidebar_option = st.sidebar.selectbox("원하는 옵션을 선택하세요", ["홈", "데이터 보기", "그래프 보기"])
+# 사이드바 메뉴
+st.sidebar.title("📌 메뉴")
+menu_option = st.sidebar.radio("원하는 기능을 선택하세요:", ["홈", "데이터 생성", "그래프 시각화"])
 
 # 홈 섹션
-if sidebar_option == "홈":
-    st.image("https://source.unsplash.com/800x400/?nature,water", caption="자연을 느껴보세요! 🌿", use_column_width=True)
+if menu_option == "홈":
+    st.subheader("🏠 홈 화면")
+    st.image("https://source.unsplash.com/800x400/?nature,technology", caption="Streamlit과 함께하는 멋진 앱", use_column_width=True)
     st.write("""
-    ### Streamlit 소개
-    Streamlit은 데이터 시각화와 대화형 웹 애플리케이션 개발을 쉽게 할 수 있도록 도와주는 파이썬 프레임워크입니다.
-    아래에서 다양한 기능을 탐색해 보세요!
+    이 앱은 Streamlit으로 만들어졌습니다.  
+    아래 사이드바를 통해 데이터를 생성하거나 그래프를 시각화해보세요!
     """)
 
-# 데이터 보기 섹션
-elif sidebar_option == "데이터 보기":
-    st.write("### 랜덤 데이터 생성 및 확인 📋")
-    rows = st.slider("데이터의 행 수를 선택하세요", 5, 50, 10)
-    cols = st.slider("데이터의 열 수를 선택하세요", 2, 5, 3)
+# 데이터 생성 섹션
+elif menu_option == "데이터 생성":
+    st.subheader("📋 데이터 생성")
+    rows = st.slider("데이터 행 수 선택", 5, 100, 10)
+    cols = st.slider("데이터 열 수 선택", 2, 5, 3)
     data = pd.DataFrame(np.random.randn(rows, cols), columns=[f"Column {i+1}" for i in range(cols)])
+    st.write("생성된 데이터 프레임:")
     st.dataframe(data)
+    st.download_button("📥 데이터 다운로드", data.to_csv(index=False).encode("utf-8"), "random_data.csv", "text/csv")
 
-# 그래프 보기 섹션
-elif sidebar_option == "그래프 보기":
-    st.write("### 간단한 그래프 시각화 📊")
+# 그래프 시각화 섹션
+elif menu_option == "그래프 시각화":
+    st.subheader("📊 그래프 시각화")
+    st.write("**Sine Wave와 Cosine Wave를 시각화합니다.**")
     x = np.linspace(0, 10, 100)
-    y = np.sin(x)
+    y1 = np.sin(x)
+    y2 = np.cos(x)
+
     fig, ax = plt.subplots()
-    ax.plot(x, y, color="blue", label="Sine Wave")
+    ax.plot(x, y1, label="Sine Wave", color="blue")
+    ax.plot(x, y2, label="Cosine Wave", color="orange")
     ax.legend()
-    ax.set_title("Sine Wave Graph")
+    ax.set_title("Sine & Cosine Waves")
+    ax.set_xlabel("X-axis")
+    ax.set_ylabel("Y-axis")
     st.pyplot(fig)
 
 # 푸터
 st.markdown("---")
-st.markdown("### 💡 참고: 이 앱은 Streamlit으로 제작되었습니다.")
-st.markdown("[더 많은 아이디어 보기](https://docs.streamlit.io/)")
+st.markdown("**💡 참고:** 이 앱은 Streamlit으로 개발되었습니다.")
+st.markdown("[Streamlit 문서 보기](https://docs.streamlit.io/)")
+
 
 
